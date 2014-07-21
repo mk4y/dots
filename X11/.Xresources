@@ -1,5 +1,5 @@
-! -- colours -- !
-#include "/home/mk4y/.colours/dark"
+! -- colors -- !
+#include "/home/mk4y/.dots/X11/colors/dark"
 
 ! -- fonts -- !
 Xft.autohint:               		0

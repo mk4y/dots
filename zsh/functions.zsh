@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # open man page and jump to specific option
 # $ manf ls -l
 function manf() {
@@ -155,12 +157,18 @@ function get_dots() {
 function put_dots() {
   emulate -LR zsh
 
-  msg_info "deploying dots from $DOTSPATH"
+  # colors etc.
+  bold=$(tput bold)
+  red=$(tput setaf 9)
+  normal=$(tput sgr0)  
+
+  # info
+  msg_info "deploying ${red}dotfiles${normal} from ${red}$DOTSPATH${normal}"
   msg_info "help: "\
-"$(tput bold)b$(tput sgr0)ackup, "\
-"$(tput bold)o$(tput sgr0)verwrite, "\
-"$(tput bold)r$(tput sgr0)emove, "\
-"$(tput bold)s$(tput sgr0)kip\n"\
+"${bold}${red}b${normal}ackup, "\
+"${bold}${red}o${normal}verwrite, "\
+"${bold}${red}r${normal}emove, "\
+"${bold}${red}s${normal}kip\n"\
 "          capitalize to apply to all remaining\n"
 
   overwrite_all=false
@@ -186,7 +194,7 @@ function put_dots() {
           msg_user "$fname exists non-linked:"
         else
           link=`readlink -mn "$dest"`
-          msg_user "$fname is already linked to $link:"
+          msg_user "The file $(tput setaf 9)$fname$(tput sgr0) is already linked to $(tput setaf 9)$link$(tput sgr0):"
         fi
 
         read -k 1 action
@@ -216,7 +224,7 @@ function put_dots() {
       if [[ "$skip" == "false" ]] && [[ "$skip_all" == "false" ]]; then
         if [[ "$overwrite" == "true" ]] || [[ "$overwrite_all" == "true" ]] ||\
            [[ "$remove" == "true" ]] || [[ "$remove_all" == "true" ]]; then
-          rm -rf $dest
+          rm -rf $dest > /dev/null
           msg_fail "removed $fname"
         fi
 
