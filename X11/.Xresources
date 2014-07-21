@@ -17,24 +17,24 @@ dzen2.background:           #101010
 
 ! -- urxvt -- !
 URxvt.background:           #202020
-URxvt.boldFont:				      xft:source code pro:medium:size=10
-URxvt.borderLess:			      false
-URxvt.buffered:				      true
-URxvt.cursorColor:			    #5E468C
-URxvt.cursorBlink:			    false
-URxvt.font:					        xft:Source Code Pro:medium:size=9
-URxvt.foreground:			      #ffffff
-URxvt.geometry:				      60x15
-URxvt.inheritPixmap:		    false
-URxvt.internalBorder:		    4
-URxvt.letterSpace:			    -1
-URxvt.lineSpace:			      1
+URxvt.boldFont:				xft:source code pro:medium:size=10
+URxvt.borderLess:			false
+URxvt.buffered:				true
+URxvt.cursorColor:			#5E468C
+URxvt.cursorBlink:			false
+URxvt.font:					xft:Source Code Pro:medium:size=9
+URxvt.foreground:			#ffffff
+URxvt.geometry:				60x15
+URxvt.inheritPixmap:		false
+URxvt.internalBorder:		4
+URxvt.letterSpace:			-1
+URxvt.lineSpace:			1
 URxvt.perl-ext-common:      default
-URxvt.scrollBar:			      false
+URxvt.scrollBar:			false
 URxvt.scrollBar_right:	    false
-URxvt.shading:				      0
-URxvt.tab-bg:				        4
-URxvt.tabbar-fg:			      7
-URxvt.tintColor:			      #080808
-URxvt.transparent:			    0
-URxvt.urgentOnBell:			    true
+URxvt.shading:				0
+URxvt.tab-bg:				4
+URxvt.tabbar-fg:			7
+URxvt.tintColor:			#080808
+URxvt.transparent:			0
+URxvt.urgentOnBell:			true
