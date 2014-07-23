@@ -236,11 +236,12 @@ function put_dots() {
 function update_dots() {
 #  emulate -LR zsh
 
-  pushd $DOTSPATH > /dev/null
 
   if [ `git diff --quiet` ]; then
     msg_info "no updates required"
   else
+    pushd $DOTSPATH > /dev/null
+
     git commit -am "update" > /dev/null
 
     git push origin master > /dev/null
