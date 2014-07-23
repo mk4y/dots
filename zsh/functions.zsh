@@ -234,16 +234,16 @@ function put_dots() {
 
 # update the dotfiles
 function update_dots() {
-  emulate -LR zsh > /dev/null
+  emulate -LR zsh
 
   pushd $DOTSPATH > /dev/null
 
-  if [ `git diff --quiet` ]; then
+  if `git diff --quiet`; then
     msg_info "no updates required"
   else
-    git commit -am "update" > /dev/null
+    git commit -am "update" --quiet
 
-    git push origin master > /dev/null
+    git push --quiet origin master
 
     msg_success "dotfiles updated!"
   fi
