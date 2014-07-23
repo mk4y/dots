@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# chromium
+alias chromium="chromium --incognito"
+
 # pacman
 alias pac="sudo pacman -S"
 alias pacu="sudo pacman -Syu"
