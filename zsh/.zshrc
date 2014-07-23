@@ -1,3 +1,4 @@
+#!/bin/sh
 # determine path to dots dir
 DOTSPATH="$(cd $(dirname $(dirname $(readlink -f ${(%):-%N}))); pwd)"
 
@@ -29,8 +30,6 @@ setopt extendedglob
 PATH=${PATH}:${HOME}/.scripts/sh/
 export PATH
 
-DOT=/home/mk4y/.dotfiles/
-
 # keybinds
 bindkey		"^[[3~"		delete-char
 bindkey		"^[[1~"		beginning-of-line
@@ -53,15 +52,16 @@ if [[ -a ~/.localrc ]]
     source ~/.localrc
 fi
 
-# source aliases from dotfiles
-for f in $(find $DOT -name "env.sh" -or -name ".aliases.sh" -or -name "source.sh" -type f)
-  do
-    source "$f"
-done
-
 # prompt style
 autoload -U colors && colors
 #PS1="%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[magenta]%}%${PWD/#$HOME/~}%{$reset_color%} » "
 PS1="%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[magenta]%}%~%{$reset_color%} » "
 
-source "$DOTSPATH/zsh/functions.zsh"
+sources=(
+  'functions'
+  'alias'
+)
+
+for src in $sources; do
+  source $DOTSPATH/zsh/$src.zsh
+done

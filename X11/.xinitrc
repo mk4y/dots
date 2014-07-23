@@ -18,6 +18,7 @@ compton -b --config ~/.dotfiles/compton/config &
 
 #-- window managers --#
 # exec awesome
-  exec openbox-session
+ exec openbox-session
 # exec pekwm
+# exec ratpoison
 # exec subtle

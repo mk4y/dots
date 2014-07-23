@@ -167,28 +167,24 @@ function put_dots() {
   msg_info "help: "\
 "${bold}${red}b${normal}ackup, "\
 "${bold}${red}o${normal}verwrite, "\
-"${bold}${red}r${normal}emove, "\
 "${bold}${red}s${normal}kip\n"\
 "          capitalize to apply to all remaining\n"
 
   overwrite_all=false
   backup_all=false
   skip_all=false
-  remove_all=false
 
-  for src in `find "$DOTSPATH" -mindepth 2 -maxdepth 2  -name .\* ! -path "$DOTSPATH/.git*"`; do
+  for src in `find "$DOTSPATH" -mindepth 1 -maxdepth 2  -name .\* ! -path "$DOTSPATH/.git*" ! -path "$DOTSPATH/.old*"`; do
     dest="$HOME/`basename \"$src\"`"
 
     if [[ -e $dest ]] || [[ -L $dest ]]; then
       overwrite=false
       backup=false
       skip=false
-      remove=false
       fname="$(tput bold)`basename $dest`$(tput sgr0)"
 
       if [[ "$overwrite_all" == "false" ]] &&\
          [[ "$backup_all" == "false" ]] &&\
-         [[ "$remove_all" == "false" ]] &&\
          [[ "$skip_all" == "false" ]]; then
         if [[ ! -L $dest ]]; then
           msg_user "$fname exists non-linked:"
@@ -212,22 +208,12 @@ function put_dots() {
             skip=true;;
           S )
             skip_all=true;;
-          r )
-            remove=true;;
-          R )
-            remove_all=true;;
           * )
             ;;
         esac
       fi
 
       if [[ "$skip" == "false" ]] && [[ "$skip_all" == "false" ]]; then
-        if [[ "$overwrite" == "true" ]] || [[ "$overwrite_all" == "true" ]] ||\
-           [[ "$remove" == "true" ]] || [[ "$remove_all" == "true" ]]; then
-          rm -rf $dest > /dev/null
-          msg_fail "removed $fname"
-        fi
-
         if [[ "$backup" == "true" ]] || [[ "$backup_all" == "true" ]]; then
           mv $dest{,.bak}
           msg_success "moved $fname to $fname.bak"
@@ -242,7 +228,7 @@ function put_dots() {
       fi
 
     else
-      link_files $src $dest
+      link_files $src $HOME
     fi
   done
 }
@@ -272,7 +258,12 @@ function msg_user() {
 }
 
 function link_files() {
-  ln -s $1 $2
+  if [[ -d $1 ]]; then
+  	\cp -afs $1 $HOME
+  else
+  	\cp -afs $1 $2
+  fi
+
   msg_success "linked $1 $(tput setaf 2)→$(tput sgr0) $2"
 }
 
