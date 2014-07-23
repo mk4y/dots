@@ -234,7 +234,7 @@ function put_dots() {
 
 # update the dotfiles
 function update_dots() {
-#  emulate -LR zsh
+  emulate -LR zsh
 
   pushd $DOTSPATH > /dev/null
 
