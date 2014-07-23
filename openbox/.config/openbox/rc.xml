@@ -725,7 +725,7 @@
 
 <!-- match all windows, and remove their decorations -->
   <application class="*">
-    <decor>no</decor>
+    <decor>yes</decor>
   </application>
 
   <application title="Mozilla Thunderbird">
