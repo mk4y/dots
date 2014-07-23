@@ -1,0 +1,7 @@
+/script load adv_windowlist.pl
+/script load autowrap.pl
+/script load bitlbee_tab_completion.pl
+/script load nickcolor.pl
+/script load queryresume.pl
+/script load trackbar.pl
+/script load urlgrab.pl
