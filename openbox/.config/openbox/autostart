@@ -1,0 +1,10 @@
+# wallpaper
+hsetroot -fill $(find images/wallpaper/wallpaper-2803242.jpg | sort -R | head -n 1) &
+
+#panel
+pypanel &
+
+# system monitor
+/home/mk4y/.dots/dzen/openbox/notebook &
+#conky -c ~/.conky/openbox/todo &
+#conky -c ~/.conky/openbox/watchlist
