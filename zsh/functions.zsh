@@ -233,6 +233,15 @@ function put_dots() {
   done
 }
 
+# update the dotfiles
+function update_dots() {
+  emulate -LR zsh
+
+  pushd $DOTSPATH > /dev/null
+
+  git commit -am "update"
+}
+
 # message functions
 function tput_msg() {
   printf "\r$(tput el)  $(tput setaf $1)$2$(tput sgr0) $3\n"
@@ -280,6 +289,8 @@ function dots() {
       put_dots;;
     edit )
       edit_dots;;
+    update )
+      update_dots;;
     * )
       msg_user "use the 'get' or 'put' commands"
       echo ''
