@@ -226,7 +226,6 @@ function put_dots() {
       else
         msg_info "skipped $fname"
       fi
-
     else
       link_files $src $HOME
     fi
@@ -235,11 +234,21 @@ function put_dots() {
 
 # update the dotfiles
 function update_dots() {
-  emulate -LR zsh
+#  emulate -LR zsh
 
   pushd $DOTSPATH > /dev/null
 
-  git commit -am "update"
+  if [ `git diff --quiet` ]; then
+    msg_info "no updates required"
+  else
+    git commit -am "update" > /dev/null
+
+    git push origin master > /dev/null
+
+    msg_success "dotfiles updated!"
+  fi
+
+  popd > /dev/null
 }
 
 # message functions
